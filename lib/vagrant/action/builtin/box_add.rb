@@ -1,4 +1,5 @@
 require "log4r"
+require 'digest'
 
 require "vagrant/util/downloader"
 require "vagrant/util/platform"
@@ -42,6 +43,17 @@ module Vagrant
             # means we were interrupted as well.
             env[:ui].info(I18n.t("vagrant.actions.box.download.interrupted"))
             return
+          end
+
+          # Verify the box's integrity
+          if env[:box_checksum]
+            env[:ui].info(I18n.t("vagrant.actions.box.integrity.checking"))
+            expected = env[:box_checksum]
+            actual = Digest::SHA256.new.file(@temp_path).hexdigest
+            if expected != actual
+              raise Errors::BoxIntegrityCheckFailed, :url => url,
+                    :expected => expected, :actual => actual
+            end
           end
 
           box_formats = env[:box_provider]
