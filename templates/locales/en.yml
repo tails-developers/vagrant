@@ -1092,6 +1092,17 @@ en:
           cleaning: "Cleaning up downloaded box..."
           downloading: "Downloading or copying the box..."
           interrupted: "Box download was interrupted. Exiting."
+        integrity:
+          checking: "Checking integrity of box..."
+          failed: |-
+            The box file has the wrong SHA256 checksum:
+
+            Download URL: %{url}
+            Expected checksum: %{expected}
+            Actual checksum:   %{actual}
+
+            Possible explanations are a currupted download, that the remote file
+            has changed, or possibly a Man-in-the-middle attack.
         verify:
           verifying: "Verifying box..."
           failed: |-

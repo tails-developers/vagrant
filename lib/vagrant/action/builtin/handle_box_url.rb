@@ -64,7 +64,8 @@ module Vagrant
                     :box_download_insecure => box_download_insecure,
                     :box_name     => box_name,
                     :box_provider => box_formats,
-                    :box_url      => box_url
+                    :box_url      => box_url,
+                    :box_checksum => env[:machine].config.vm.box_checksum
                   })
                 rescue Errors::BoxAlreadyExists
                   # Just ignore this, since it means the next part will succeed!

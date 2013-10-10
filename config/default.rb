@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.usable_port_range = (2200..2250)
   config.vm.box_url = nil
+  config.vm.box_checksum = nil
   config.vm.base_mac = nil
   config.vm.boot_timeout = 300
   config.vm.graceful_halt_timeout = 60
